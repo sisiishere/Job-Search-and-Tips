@@ -12,8 +12,28 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 
+//grabbing the users first and last names
+$("#submit").on("click", function (event) {
 
-var queryURL = "https://api.indeedassessments.com/v1/";
+    var firstname = $("#first_name").val().trim();
+    var lastname = $("#last_name").val().trim();
+    //ladida
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+// var queryURL = "https://api.indeedassessments.com/v1/";
+var youtubeURL = "https://www.googleapis.com/youtube/v3/channels?part=contentDetails& mine=true"
 
 $.ajax({
     url: queryURL,

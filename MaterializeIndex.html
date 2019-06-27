@@ -1,91 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en-us">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <!-- Compiled and minified CSS -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>API Responses</title>
 
- <!-- Compiled and minified JavaScript -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <title>Job Search and Tips</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Materialize.css links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- Optimize website for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
+
 <body>
     <nav>
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">Logo</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Job Search</a></li>
-            <li><a href="badges.html">Results and Tips</a></li>
-          </ul>
+        <div class="nav-wrapper  light-blue lighten-2">
+            <a href="#!" class="brand-logo">Job Search is fun</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Results</a></li>
+            <li><a href="#">Favorites</a></li>
+            </ul>
         </div>
-      </nav>
+    </nav>
     
-      <ul class="sidenav" id="mobile-demo">
-          <li><a href="sass.html">Job Search</a></li>
-          <li><a href="badges.html">Results and Tips</a></li>
-      </ul>
-
-    <div class="container">
-    <div class="row">
-        <div class="col s12 m12">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">Job Search</span>
-              <p>Welcome to our Job Search Application! To get started enter in a keyword relating to the job you're looking for.
-                 You'll recieve information on links to jobs relavant to the keyword entered in your area. Go ahead and get the ball rolling on your career!
-              </p>
-              <div class="row">
-                    <form class="col s12">
-                      <div class="row">
-                        <div class="input-field col s6">
-                          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                          <label for="first_name">First Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                          <input id="last_name" type="text" class="validate">
-                          <label for="last_name">Last Name</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                          <label for="disabled">Disabled</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="password" type="password" class="validate">
-                          <label for="password">Password</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input id="email" type="email" class="validate">
-                          <label for="email">Email</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col s12">
-                          This is an inline input field:
-                          <div class="input-field inline">
-                            <input id="email_inline" type="email" class="validate">
-                            <label for="email_inline">Email</label>
-                            <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Results</a></li>
+            <li><a href="#">Favorites</a></li>
+        </ul>
+      <div class="container">
+        <div class="row">
+            <div class="col s12 m12">
+              <div class="card  amber">
+                <div class="card-content white-text">
+                  <span class="card-title">Job Search</span>
+                    <p>Welcome to our Job Search Application! To get started enter in a keyword relating to the job you're looking for.<br><br>
+                      You'll recieve information on links to jobs relavant to the keyword entered in your area. Go ahead and get the ball rolling on your career!
+                    </p>
+                    <div class="row">
+                      <form class="col s12">
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="first_name" type="text" class="validate">
+                              <label for="first_name">First Name</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
                           </div>
                         </div>
-                      </div>
-                    </form>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="JS" type="search" class="validate">
+                              <label for="JS">Enter Keyword for jobs</label>
+                            </div>
+                          </div>
+                          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                              <i class="material-icons right">send</i>
+                            </button>
+                      </form>
+                    </div>
                   </div>
-            </div>
-          </div>
-        </div>
-    </div> 
-    </div>  
+                </div>
+              </div>
+            </div> 
+          </div>  
+    <script src="assets/javascript/app.js"></script>
+    <!-- This is the downloaded materialize js file *** their web version doesn't work -->
+    <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
 </body>
-<script src="assets/javascript/app.js"></script>
-</html>
-         
- 
+</html>        

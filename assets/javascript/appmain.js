@@ -33,15 +33,16 @@ $("#submit").on("click", function (event) {
 
 
 // var queryURL = "https://api.indeedassessments.com/v1/";
-var youtubeURL = "https://www.googleapis.com/youtube/v3/channels?part=contentDetails& mine=true"
+var youtubeURL = "https://www.googleapis.com/youtube/v3/channels?api_key=AIzaSyAJqO0e_xPV3v6dOOSCl7U2OUNGXiSvSo0"
+//var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&tag=cats";
 
 $.ajax({
-    url: queryURL,
+    url: youtubeURL,
     method: "GET"
 
 })
     .then(function (response) {
-
+        console.log(response);
     })
 
 

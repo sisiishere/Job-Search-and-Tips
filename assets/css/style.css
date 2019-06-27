@@ -14,3 +14,7 @@ body {
 .footer-css {
     flex-shrink: 0;
   }
+
+.container{
+width:100%;
+}

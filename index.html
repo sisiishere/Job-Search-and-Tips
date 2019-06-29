@@ -44,34 +44,12 @@
     <div class="row z-depth-3 form-custom">
         <form class="col s12">
             <div class="row">
-            <div class="input-field col s6">
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">First Name</label>
+                <div class="input-field col s12">
+                    <input id="keyword" type="text" class="validate">
+                    <label for="keyword">Type your keyword here</label>
+                </div>
             </div>
-            <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Last Name</label>
-            </div>
-            </div>
-            <div class="row">
-            <div class="input-field col s12">
-                <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                <label for="disabled">Disabled</label>
-            </div>
-            </div>
-            <div class="row">
-            <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
-                <label for="password">Password</label>
-            </div>
-            </div>
-            <div class="row">
-            <div class="input-field col s12">
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
-            </div>
-            </div>
-            <button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">Submit
+            <button id="submit" class="btn waves-effect waves-light grey darken-2" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>
         </form>
@@ -81,6 +59,7 @@
       grey lighten-2
     -->
 
+        <div id="test"></div>
 
   </div>
 
@@ -125,6 +104,7 @@
 
 
   <script src="assets/javascript/app.js"></script>
+  <script src="assets/javascript/appmain2.js"></script>
   <!-- This is the downloaded materialize js file *** their web version doesn't work -->
   <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
 </body>

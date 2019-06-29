@@ -68,7 +68,7 @@ $("#submit").on("click", function(event) {
 
 $("#wikipedia-title").append(sessionStorage.getItem("title"));
 $("#wikipedia-snippet").append(sessionStorage.getItem("snippet"));
-$("a.href").html(sessionStorage.getItem("link"));
+// $("a.href").html(sessionStorage.getItem("link"));
 
 
 

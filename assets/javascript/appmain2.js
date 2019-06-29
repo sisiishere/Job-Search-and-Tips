@@ -23,53 +23,50 @@ $("#submit").on("click", function(event) {
     // var queryURL = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + "elephant" + "&callback=?" + "&format=json" + "&origin=*";
     var queryURL = "https://en.wikipedia.org/w/api.php?action=query" + "&list=search" + "&srsearch=" + keyword + "&srlimit=5" + "&format=json" + "&origin=*";   
 
-    // Perfoming an AJAX GET request to our queryURL
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-    
-    // After the data from the AJAX request comes back
-    .then(function(response) {
-        console.log(response)
+    if (!keyword) {
+        // alert("Please fill out the form");
+        $("#modal").modal("show");
+        return false;
+    }
+
+    else {
+
+        // Perfoming an AJAX GET request to our queryURL
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
         
-        var results = response.query.search[0];
-        console.log(results);
+        // After the data from the AJAX request comes back
+        .then(function(response) {
+            console.log(response)
+            
+            var results = response.query.search[0];
+            console.log(results);
 
-        // var wikiDiv = $("<div>");
-        // wikiDiv.addClass("wiki-container");
-        // var title = results.title;
-        // var p1 = $("<h1>").html(title)
-        // var snippet = results.snippet;
-        // var p2 = $("<p>").html(snippet);
-        // wikiDiv.append(p1);
-        // wikiDiv.append(p2);
+            var title = results.title;
+            var snippet = results.snippet;
+            var link = "https://en.wikipedia.org/?curid=" + results.pageid;
 
-        // $("#test").append(wikiDiv);
-
-        // var a = $("#wikipedia-link")
-        // a.href = "https://en.wikipedia.org/?curid=" + results.pageid;
-        var link = "https://en.wikipedia.org/?curid=" + results.pageid;
-        // var link = $("#wikipedia-link").attr("href", test);
-        // var link = a.href;
-        console.log(link);
+            // var a = $("#wikipedia-link")
+            // var link = $("#wikipedia-link").attr("href", test);
+            // var link = a.href;
+            // var link = "https://en.wikipedia.org/?curid=" + results.pageid;
+            // console.log(link);
 
 
-        sessionStorage.setItem("title", results.title);
-        sessionStorage.setItem("snippet", results.snippet);
-        sessionStorage.setItem("link", link);
+            sessionStorage.setItem("title", title);
+            sessionStorage.setItem("snippet", snippet);
+            sessionStorage.setItem("link", link);
+
+            // sessionStorage.setItem("wikiDiv", wikiDiv);
+            // sessionStorage.wikiDiv = JSON.stringify(wikiDiv);
 
 
-        location.href = "index2.html";
-        
-        // var link = a.href;
-    });
+            location.href = "index2.html";
+        });
+    }
 });
-
-$("#wikipedia-title").append(sessionStorage.getItem("title"));
-$("#wikipedia-snippet").append(sessionStorage.getItem("snippet"));
-// $("a.href").html(sessionStorage.getItem("link"));
-
 
 
 // Important links:

@@ -12,19 +12,22 @@
 // var database = firebase.database();
 
 
-//grabbing the users first and last names
+// When the user hits submit
 $("#submit").on("click", function(event) {
     event.preventDefault();
 
-
+    // Variables for API call
     var keyword = $("#keyword").val().trim();
     
-    // var queryURL = "https://en.wikipedia.org/w/api.php?action=query" + "&format=json" + "&prop=info&inprop=url" + "&gsrlimit=10" + "&generator=search" + "&origin=*" + "&gsrsearch=" + "elephant";
-    // var queryURL = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + "elephant" + "&callback=?" + "&format=json" + "&origin=*";
-    var queryURL = "https://en.wikipedia.org/w/api.php?action=query" + "&list=search" + "&srsearch=" + keyword + "&srlimit=5" + "&format=json" + "&origin=*";   
+    // URL #1 -- Gives us the full Wikipedia page (but doesn't always return a result, depending on the keyword used)
+    var queryURL = "https://en.wikipedia.org/w/api.php?action=parse&format=json" + "&page=" + keyword + "&prop=text" + "&origin=*"
+    // URL #2 -- Gives us just a snippet (but performs a regular search and always returns a result)
+    var queryURL2 = "https://en.wikipedia.org/w/api.php?action=query" + "&list=search" + "&srsearch=" + keyword + "&srlimit=5" + "&format=json" + "&origin=*";    
+    // URL #3 -- Gives us a few sentences (but doesn't always return a result)
+    // var queryURL = "https://en.wikipedia.org/api/rest_v1/page/summary/" + keyword + "?redirect=true";
 
+    // If the user doesn't input a keyword, a modal will pop up telling them to fill out all fields
     if (!keyword) {
-        // alert("Please fill out the form");
         $(".modal").modal();
         $(".modal").modal("open");
         return false;
@@ -38,29 +41,53 @@ $("#submit").on("click", function(event) {
     
     // After the data from the AJAX request comes back
     .then(function(response) {
-        console.log(response)
+        console.log(response);
         
-        var results = response.query.search[0];
-        console.log(results);
+        // If an error response comes back (i.e. search results don't return a Wikipedia page), then we do the AJAX call again but with queryURL2
+        if (response.error) {
+            $.ajax({
+                url: queryURL2,
+                method: "GET"
+            })
 
-        // Looping through results to create and store variables for all retrieved Wikipedia data
-        // for (var i = 0; i < results.length; i++) {
-            var title = results.title;
-            var snippet = results.snippet;
-            var link = "https://en.wikipedia.org/?curid=" + results.pageid;
+            .then(function(response) {
+                console.log(response);
 
+                var results = response.query.search[0];
+                console.log(results);
+
+                var title = results.title;
+                var snippet = results.snippet;
+                var link = "https://en.wikipedia.org/?curid=" + results.pageid;
+
+                sessionStorage.setItem("title", title);
+                sessionStorage.setItem("snippet", snippet);
+                sessionStorage.setItem("link", link);
+
+                location.href = "index2.html";
+            })
+        }
+
+        // Otherwise, we continue with the first queryURL
+        else {
+
+            // For URL #3
+            // var title = response.title;
+            // var snippet = response.extract_html;
+            // var link = "https://en.wikipedia.org/?curid=" + response.pageid;
+
+            // For URL #1
+            var title = response.parse.title;
+            var snippet = response.parse.text["*"];
+            var link = "https://en.wikipedia.org/?curid=" + response.parse.pageid;
 
             sessionStorage.setItem("title", title);
             sessionStorage.setItem("snippet", snippet);
             sessionStorage.setItem("link", link);
             console.log(sessionStorage.setItem("title", title));
-        // }
 
-        location.href = "index2.html";
+            location.href = "index2.html";
+        }
     });
 
 });
-
-
-// Important links:
-// https://stackoverflow.com/questions/36985111/using-wikipedias-api-to-fetch-results-from-search-query

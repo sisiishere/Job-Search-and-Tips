@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    
+    
     // Variables to refer to stored Wikipedia API results
     var title = sessionStorage.getItem("title");
     var snippet = sessionStorage.getItem("snippet");
@@ -21,6 +23,6 @@ $(document).ready(function() {
     wikiDiv.append(p4);
 
     // Displaying the Wikipedia results
-    $("#wikipedia-results").html(wikiDiv);
+    $("#wikipedia-results").append(wikiDiv);
 
 });

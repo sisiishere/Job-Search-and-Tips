@@ -1,0 +1,39 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url("images/red-gradient.jpg");
+    background-size: cover;
+}
+
+.card-custom {
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.form-custom {
+    background: rgba(255, 255, 255, 0.75);
+    padding: 15px 5px;
+    margin-top: 10px;
+}
+
+iframe {
+    display: block;
+    margin: 0 auto;
+}
+
+.header-custom {
+    margin-bottom: 10px;
+}
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+.footer-css {
+    flex-shrink: 0;
+  }
+
+

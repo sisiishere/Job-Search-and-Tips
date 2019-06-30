@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Search</title>
+  <title>Favorites</title>
 
   <link rel="stylesheet" href="assets/css/reset.css">
   <!-- Materialize.css links -->
@@ -21,7 +21,6 @@
 
 <body>
 
-<!-- Navbar -->
   <nav class="grey darken-4 z-depth-3 header-custom" role="navigation">
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo">Job Search is fun</a>
@@ -37,45 +36,51 @@
   <ul class="sidenav" id="mobile-demo">
     <li><a href="index.html">Search</a></li>
     <li><a href="index2.html">Results</a></li>
-    <li><a href="index3.html˙">Favorites</a></li>
+    <li><a href="index3.html">Favorites</a></li>
   </ul>
 
-<!-- Main content -->
   <div class="container main-content">
 
-    <!-- Input form -->
-    <div class="row z-depth-3 form-custom">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="keyword" type="text" class="validate">
-                    <label for="keyword">Type your keyword here</label>
-                </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card z-depth-3 card-custom">
+          <div class="card-content black-text">
+            <span class="card-title">Favorite Job Postings</span>
+            <div class="card-action" id="job-favorites">
             </div>
-            <button id="submit" class="btn waves-effect waves-light grey darken-2" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
-            </button>
-        </form>
+          </div>
+        </div>
+      </div>
     </div>
 
-
-    <div id="test"></div>
-
-
-    <!-- Modal -->  
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Hey there!</h4>
-            <p>Please fill out all fields to continue.</p>
+    <div class="row">
+      <div class="col s12">
+        <div class="card z-depth-3 card-custom">
+          <div class="card-content black-text">
+            <span class="card-title">Favorite Wikipedia Articles</span>
+            <div class="card-action" id="wikipedia-favorites">
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close btn orange lighten-1 white-text">Close</a>
-        </div>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="card z-depth-3 card-custom">
+          <div class="card-content black-text">
+            <span class="card-title">Favorite YouTube videos</span>
+            <div class="card-action" id="video-favorites">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   </div>
 
-<!-- Footer -->
+
   <footer class="page-footer orange footer-css">
     <div class="container">
       <div class="row">
@@ -116,7 +121,11 @@
 
 
   <script src="assets/javascript/app.js"></script>
+  
+  <!-- <script src="assets/javascript/appmain.js"></script> -->
   <script src="assets/javascript/appmain2.js"></script>
+  <script src="assets/javascript/appmain3.js"></script>
+
   <!-- This is the downloaded materialize js file *** their web version doesn't work -->
   <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
 </body>
@@ -124,4 +133,3 @@
 
 
 </html>
- 

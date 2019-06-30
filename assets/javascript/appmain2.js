@@ -64,5 +64,3 @@ $("#submit").on("click", function(event) {
 
 // Important links:
 // https://stackoverflow.com/questions/36985111/using-wikipedias-api-to-fetch-results-from-search-query
-
-// If can't get URL, use https://en.wikipedia.org/?curid=9279 (so url + id)

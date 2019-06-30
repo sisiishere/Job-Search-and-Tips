@@ -26,10 +26,11 @@ $(document).ready(function() {
         wikiDiv.append(p1);
         wikiDiv.append(p2);
         wikiDiv.append(p3);
-        wikiDiv.append(p4);
+        // wikiDiv.append(p4);
 
         // Displaying the Wikipedia results
         $("#wikipedia-results").append(wikiDiv);
+        $("#wiki-link").append(p4);
 
     }
 });

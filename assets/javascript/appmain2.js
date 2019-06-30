@@ -20,7 +20,7 @@ $("#submit").on("click", function(event) {
     var keyword = $("#keyword").val().trim();
     
     // URL #1 -- Gives us the full Wikipedia page (but doesn't always return a result, depending on the keyword used)
-    var queryURL = "https://en.wikipedia.org/w/api.php?action=parse&format=json" + "&page=" + keyword + "&prop=text" + "&origin=*"
+    var queryURL = "https://en.wikipedia.org/w/api.php?action=parse&format=json" + "&page=" + keyword + "&origin=*"; // + "&prop=text"
     // URL #2 -- Gives us just a snippet (but performs a regular search and always returns a result)
     var queryURL2 = "https://en.wikipedia.org/w/api.php?action=query" + "&list=search" + "&srsearch=" + keyword + "&srlimit=5" + "&format=json" + "&origin=*";    
     // URL #3 -- Gives us a few sentences (but doesn't always return a result)

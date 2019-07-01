@@ -16,8 +16,7 @@ $(document).ready(function() {
         var p2 = $("<p>").html(snippet);
         var p3 = $("<br>");
         var p4 = $("<a>Click here for more information</a>");
-        p4.addClass("card wiki-url")
-        // p4.addClass("orange-text text-darken-4")
+        p4.addClass("card center-align wiki-url")
         p4.attr("href", link);
         p4.attr("target", "_blank")
     
@@ -62,13 +61,31 @@ $(document).ready(function() {
         p4.addClass("job-url");
         p4.attr("href", jobLink);
         p4.attr("target", "_blank");
+        var p5 = $("<button>Click here to favorite</button>");
+        p5.addClass("favorite-button");
         // Appending all elements to the jobDiv
         jobDiv.append(p1);
         jobDiv.append(p2);
         jobDiv.append(p3);
         jobDiv.append(p4);
+        jobDiv.append(p5);
         // Displaying the job results
         $("#job-results").append(jobDiv);
     })
+
+
+    // *** FAVORITES
+    $(document).on("click", ".favorite-button", function() {
+        $(this).addClass("red");
+        // $(".job-container").
+        // $("#wiki-link").append(this); 
+
+        function moveFavorite() {
+            var favoritedJob = $(".job-container");
+            $("#wiki-link").append(favoritedJob);
+        }
+        moveFavorite();
+    })
+
 
 });

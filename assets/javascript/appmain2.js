@@ -91,37 +91,78 @@ $("#submit").on("click", function(event) {
         }
     });
 
-    // Variables for job search API
-    var queryURLJ = "https://jobs.search.gov/jobs/search.json?query=" + keyword;
+    // // Variables for job search API
+    // var queryURLJ = "https://jobs.search.gov/jobs/search.json?query=" + keyword;
 
-     // Perfoming an AJAX GET request to our queryURL
-    $.ajax({
-        url: queryURLJ,
-        method: "GET"
-    })
+    //  // Perfoming an AJAX GET request to our queryURL
+    // $.ajax({
+    //     url: queryURLJ,
+    //     method: "GET"
+    // })
     
-    // After the data from the AJAX request comes back
-    .then(function(response) {
+    // // After the data from the AJAX request comes back
+    // .then(function(response) {
+    //     console.log(response); 
+    //     // Creating an array to push the object to (created below)
+    //     var jobArray = [];
+
+    //     // For each i, creating a new object to hold the information we want about each job
+    //     response.forEach(i => {
+    //         let newObj = {};
+    //         newObj.jobTitle = i.position_title;
+    //         newObj.jobOrg = i.organization_name;
+    //         newObj.jobLocation = i.locations[0];
+    //         newObj.jobLink = i.url;
+    //         // Pushing the new object to the jobArray
+    //         jobArray.push(newObj)
+    //     })
+
+    //     console.log(jobArray)
+    //     // Storing the object in session storage
+    //     sessionStorage.setItem("jobs", JSON.stringify(jobArray));
+
+
+    // });
+
+
+    var host = "data.usajobs.gov";
+    var userAgent = "kevin.spies@gmail.com";
+    var authKey = "EmwCZ7moRDelyy+wVWLkYGAmao1OjvebTpbQEQd5BxY=";
+
+    var queryURLJ2 = "https://data.usajobs.gov/api/search?Keyword=" + keyword;
+
+   $.ajax({
+     url: queryURLJ2,
+     method: "GET",
+     headers: {
+       "Host": host,
+       "User-Agent": userAgent,
+       "Authorization-Key": authKey
+     }
+   })
+   
+   .then(function(response) {
         console.log(response); 
-        // Creating an array to push the object to (created below)
+
+        var results = response.SearchResult.SearchResultItems;
+        console.log(results);
+
         var jobArray = [];
 
-        // For each i, creating a new object to hold the information we want about each job
-        response.forEach(i => {
+        results.forEach(i => {
             let newObj = {};
-            newObj.jobTitle = i.position_title;
-            newObj.jobOrg = i.organization_name;
-            newObj.jobLocation = i.locations[0];
-            newObj.jobLink = i.url;
+            newObj.jobTitle = i.MatchedObjectDescriptor.PositionTitle;
+            newObj.jobOrg = i.MatchedObjectDescriptor.OrganizationName;
+            newObj.jobLocation = i.MatchedObjectDescriptor.PositionLocationDisplay
+            newObj.jobLink = i.MatchedObjectDescriptor.PositionURI;
             // Pushing the new object to the jobArray
             jobArray.push(newObj)
-        })
+    })
 
-        console.log(jobArray)
-        // Storing the object in session storage
-        sessionStorage.setItem("jobs", JSON.stringify(jobArray));
+    console.log(jobArray)
+    // Storing the object in session storage
+    sessionStorage.setItem("jobs", JSON.stringify(jobArray));
 
-
-    });
+   });
 
 });

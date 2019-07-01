@@ -9,8 +9,31 @@ body {
     background-size: cover;
 }
 
+/* Styling the layout of the general cards */
 .card-custom {
     background: rgba(255, 255, 255, 0.75);
+}
+ /* Adding a max-heigh and scroll to the section of the job card that contains the results */
+.job-container {
+    max-height: 500px;
+    overflow: scroll;
+}
+
+/* Styling the individual cards that the job results display on */
+.job-card-custom {
+    line-height: 1.5;
+    padding: 10px;
+}
+
+/* Styling the wikipedia results card so that the card has a max height and scrolls when results are displayed */
+.wiki-container {
+    max-height: 500px;
+    overflow: scroll; 
+    padding: 10px;
+}
+
+.wiki-url {
+    padding: 5px;
 }
 
 .form-custom {
@@ -28,12 +51,20 @@ iframe {
     margin-bottom: 10px;
 }
 
+.wiki-container {
+    font-family: “Linux Libertine, Georgia, Times, serif”;
+}
+
+.wiki-url:hover {
+    color: rgb(61, 61, 61) !important;
+}
+
 .main-content {
     flex: 1 0 auto;
 }
 
 .footer-css {
     flex-shrink: 0;
-  }
+}
 
 

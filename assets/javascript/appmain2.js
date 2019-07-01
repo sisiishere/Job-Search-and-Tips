@@ -33,6 +33,7 @@ $("#submit").on("click", function(event) {
         return false;
     }
 
+
     // Perfoming an AJAX GET request to our queryURL
     $.ajax({
         url: queryURL,
@@ -88,6 +89,39 @@ $("#submit").on("click", function(event) {
 
             location.href = "index2.html";
         }
+    });
+
+    // Variables for job search API
+    var queryURLJ = "https://jobs.search.gov/jobs/search.json?query=" + keyword;
+
+     // Perfoming an AJAX GET request to our queryURL
+    $.ajax({
+        url: queryURLJ,
+        method: "GET"
+    })
+    
+    // After the data from the AJAX request comes back
+    .then(function(response) {
+        console.log(response); 
+        // Creating an array to push the object to (created below)
+        var jobArray = [];
+
+        // For each i, creating a new object to hold the information we want about each job
+        response.forEach(i => {
+            let newObj = {};
+            newObj.jobTitle = i.position_title;
+            newObj.jobOrg = i.organization_name;
+            newObj.jobLocation = i.locations[0];
+            newObj.jobLink = i.url;
+            // Pushing the new object to the jobArray
+            jobArray.push(newObj)
+        })
+
+        console.log(jobArray)
+        // Storing the object in session storage
+        sessionStorage.setItem("jobs", JSON.stringify(jobArray));
+
+
     });
 
 });

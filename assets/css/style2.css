@@ -5,7 +5,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background-image: url("images/red-gradient.jpg");
+    background-image: url("email-pattern/email-pattern.png");
     background-size: cover;
 }
 

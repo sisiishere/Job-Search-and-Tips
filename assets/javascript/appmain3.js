@@ -86,7 +86,9 @@ $(document).ready(function() {
     // When the button is clicked, we retrieve the index from the data-index attritube and verify that the item has not already been saved
     $(document).on("click", ".favorite-button", function() {
         $(this).addClass("red fav-btn");
-        var newElement = jobArrayParsed[$(this).data("index")];
+        var newElement = $(this).attr("data-index");
+        // console.log(newElement);
+        console.log(this);
         
         if ($(this).attr("data-saved") === "true") {
             return false
@@ -97,7 +99,7 @@ $(document).ready(function() {
             saved.push(newElement);
             $(this).attr("data-saved", true);
             localStorage.setItem("saved", JSON.stringify(saved));
-            console.log(saved);
+            console.log(localStorage);
         }
     })
 
@@ -121,4 +123,6 @@ $(document).ready(function() {
         localStorage.setItem("saved", JSON.stringify(saved));
     })
 
+    // *** YouTube API
+    embed();
 });

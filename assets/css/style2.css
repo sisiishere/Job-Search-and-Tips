@@ -19,6 +19,10 @@ body {
     overflow: scroll;
 }
 
+.card{
+    border: 2px ridge black;
+}
+
 /* Styling the individual cards that the job results display on */
 .job-card-custom {
     line-height: 1.5;

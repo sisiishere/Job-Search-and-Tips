@@ -172,7 +172,7 @@ $("#submit").on("click", function(event) {
     });
 
 
-    setTimeout (test, 3000)
+    setTimeout (test, 2000)
 
     function test() {
         if (wiki == true && job == true && youtube == true) {

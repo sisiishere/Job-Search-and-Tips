@@ -46,7 +46,20 @@ body {
 
 iframe {
     display: block;
+    /* display: inline-block; */
     margin: 0 auto;
+}
+
+.yt1 {
+    /* margin-left: 10px;
+    float: left; */
+    margin-bottom: 10px;
+}
+
+.yt2 {
+    /* margin-right: 10px;
+    float: right; */
+    margin-top: 10px;
 }
 
 .header-custom {

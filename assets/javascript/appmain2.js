@@ -222,7 +222,8 @@ function embed(){
     YT.attr("frameborder","1");
     YT.attr("src", "https://www.youtube.com/embed/"+videoID);
     YT.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
-    YT.attr("allowfullscreen");
+    YT.attr("allowfullscreen", true);
+    YT.addClass("yt1")
     var YT2 = $("<iframe>");
     YT2.attr("width","200");
     YT2.attr("height","200");
@@ -230,6 +231,7 @@ function embed(){
     YT2.attr("src", "https://www.youtube.com/embed/"+videoID_2);
     YT2.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
     YT2.attr("allowfullscreen",true);
+    YT2.addClass("yt2");
     
     console.log(YT);
     $("#youtube").append(YT);

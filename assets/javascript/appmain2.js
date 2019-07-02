@@ -65,7 +65,7 @@ $("#submit").on("click", function(event) {
                 sessionStorage.setItem("snippet", snippet);
                 sessionStorage.setItem("link", link);
 
-                location.href = "index2.html";
+                // location.href = "index2.html";
             })
         }
 
@@ -87,7 +87,7 @@ $("#submit").on("click", function(event) {
             sessionStorage.setItem("link", link);
             console.log(sessionStorage.setItem("title", title));
 
-            location.href = "index2.html";
+            // location.href = "index2.html";
         }
     });
 
@@ -162,6 +162,8 @@ $("#submit").on("click", function(event) {
     console.log(jobArray)
     // Storing the object in session storage
     sessionStorage.setItem("jobs", JSON.stringify(jobArray));
+
+    location.href = "index2.html";
 
    });
 

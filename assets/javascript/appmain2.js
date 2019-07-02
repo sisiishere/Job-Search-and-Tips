@@ -10,6 +10,9 @@
 // firebase.initializeApp(firebaseConfig);
 // var database = firebase.database();
 
+var job = false;
+var wiki = false;
+var youtube = false;
 
 var videoID;
 var videoID_2;
@@ -18,6 +21,7 @@ var videoID_2;
 $("#submit").on("click", function(event) {
     event.preventDefault();
 
+
     // Variables for API call
     var keyword = $("#keyword").val().trim();
     
@@ -25,8 +29,6 @@ $("#submit").on("click", function(event) {
     var queryURL = "https://en.wikipedia.org/w/api.php?action=parse&format=json" + "&page=" + keyword + "&origin=*"; // + "&prop=text"
     // URL #2 -- Gives us just a snippet (but performs a regular search and always returns a result)
     var queryURL2 = "https://en.wikipedia.org/w/api.php?action=query" + "&list=search" + "&srsearch=" + keyword + "&srlimit=5" + "&format=json" + "&origin=*";    
-    // URL #3 -- Gives us a few sentences (but doesn't always return a result)
-    // var queryURL = "https://en.wikipedia.org/api/rest_v1/page/summary/" + keyword + "?redirect=true";
 
     // If the user doesn't input a keyword, a modal will pop up telling them to fill out all fields
     if (!keyword) {
@@ -74,11 +76,6 @@ $("#submit").on("click", function(event) {
         // Otherwise, we continue with the first queryURL
         else {
 
-            // For URL #3
-            // var title = response.title;
-            // var snippet = response.extract_html;
-            // var link = "https://en.wikipedia.org/?curid=" + response.pageid;
-
             // For URL #1
             var title = response.parse.title;
             var snippet = response.parse.text["*"];
@@ -91,40 +88,8 @@ $("#submit").on("click", function(event) {
 
             // location.href = "index2.html";
         }
+        wiki = true;
     });
-
-    // // Variables for job search API
-    // var queryURLJ = "https://jobs.search.gov/jobs/search.json?query=" + keyword;
-
-    //  // Perfoming an AJAX GET request to our queryURL
-    // $.ajax({
-    //     url: queryURLJ,
-    //     method: "GET"
-    // })
-    
-    // // After the data from the AJAX request comes back
-    // .then(function(response) {
-    //     console.log(response); 
-    //     // Creating an array to push the object to (created below)
-    //     var jobArray = [];
-
-    //     // For each i, creating a new object to hold the information we want about each job
-    //     response.forEach(i => {
-    //         let newObj = {};
-    //         newObj.jobTitle = i.position_title;
-    //         newObj.jobOrg = i.organization_name;
-    //         newObj.jobLocation = i.locations[0];
-    //         newObj.jobLink = i.url;
-    //         // Pushing the new object to the jobArray
-    //         jobArray.push(newObj)
-    //     })
-
-    //     console.log(jobArray)
-    //     // Storing the object in session storage
-    //     sessionStorage.setItem("jobs", JSON.stringify(jobArray));
-
-
-    // });
 
 
     var host = "data.usajobs.gov";
@@ -165,41 +130,114 @@ $("#submit").on("click", function(event) {
     // Storing the object in session storage
     sessionStorage.setItem("jobs", JSON.stringify(jobArray));
 
-    location.href = "index2.html";
+    // location.href = "index2.html";
 
+    job = true;
    });
 
 
-   //preparing the kind of information that is to be requested
 
-   var request = gapi.client.youtube.search.list({
-       part: "snippet",
-       type: "video",
+   // *** YouTube API
+    var videoID;
+    var videoID_2;
 
-       //search parameter that takes in the users input about a job and gives back videos related to tips on to become a softare engieer.
+    var request = gapi.client.youtube.search.list({
+        part: "snippet",
+        type: "video",
 
-       q: encodeURIComponent("tips to become a "+$("#keyword").val()).replace(/%20/g, "+"),
-       maxResults: 2,
-       order: "viewCount",
-   });
-   request.execute(function(response){
-       // log the response 
-       console.log(response);
-       
-       //gets the the video ids from the response request that refer to the two most viewed videos.
+        //search parameter that takes in the users input about a job and gives back videos related to tips on to become a softare engieer.
 
-       videoID = response.items[0].id.videoId;
-       videoID_2 = response.items[1].id.videoId;
-       console.log(videoID);
-       console.log(videoID_2);
+        q: encodeURIComponent("tips to become a "+$("#keyword").val()).replace(/%20/g, "+"),
+        maxResults: 2,
+        order: "viewCount"
+    });
+    request.execute(function(response){
+        // log the response 
+        console.log(response);
+        
+        //gets the the video ids from the response request that refer to the two most viewed videos.
 
-       //storing variables in the session so they can be referenced later.
-       sessionStorage.setItem("VideoID",videoID);
-       sessionStorage.setItem("VideoID_2",videoID_2);
+        videoID = response.items[0].id.videoId;
+        videoID_2 = response.items[1].id.videoId;
+        console.log(videoID);
+        console.log(videoID_2);
 
-       console.log(sessionStorage);
-       console.log(typeof(sessionStorage));
-       //location.href = "index2.html"; 
-   });
+        //storing variables in the session so they can be referenced later.
+        sessionStorage.setItem("VideoID",videoID);
+        sessionStorage.setItem("VideoID_2",videoID_2);
+
+        console.log(sessionStorage);
+        console.log(typeof(sessionStorage));
+            embed();
+            // location.href = "index2.html";
+
+    youtube = true;
+    });
+
+    // Timeout function so we wait a few seconds before running the conditional
+    setTimeout (test, 2000)
+    // Conditional statement to test whether or not all of the API calls have been made successfully before redirecting to the results page
+    function test() {
+        if (wiki == true && job == true && youtube == true) {
+            location.href = "index2.html";
+            console.log("hello");
+        }
+        else {
+            console.log("whoops");
+        }
+    }
+
 
 });
+
+
+
+function init(){
+    gapi.client.setApiKey("AIzaSyCa6Ax79dsyv4aSME_i7u3VKv7ApWTbAe4");
+    gapi.client.load("youtube", "v3", function(){
+        //Youtube API is ready
+    });
+};
+
+/*function to embed the videos in our 2nd html page. 
+Gets the variable VideoID that was declared in the function call for the YoutubeDataAPI call. 
+The video id is the id used to reference a video from the data api related to the users search.
+*/
+function embed(){
+    videoID = sessionStorage.getItem("VideoID");
+    videoID_2 = sessionStorage.getItem("VideoID_2");
+    console.log(videoID);
+    console.log(videoID_2);
+    $("#youtube").empty();
+    var YT = $("<iframe>");
+    /*var YT = $('<iframe>',{
+        width: 200,
+        height: 200,
+        frameborder: 1,
+        src: "https://www.youtube.com/embed/"+videoID,
+        allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;    ",
+        allowfullscreen: "true"
+    }).appendTo($("#youtube"));
+    location.href ="index2.html";
+    */
+    YT.attr("width","200");
+    YT.attr("height","200");
+    YT.attr("frameborder","1");
+    YT.attr("src", "https://www.youtube.com/embed/"+videoID);
+    YT.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+    YT.attr("allowfullscreen", true);
+    YT.addClass("yt1")
+    var YT2 = $("<iframe>");
+    YT2.attr("width","200");
+    YT2.attr("height","200");
+    YT2.attr("frameborder","1");
+    YT2.attr("src", "https://www.youtube.com/embed/"+videoID_2);
+    YT2.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+    YT2.attr("allowfullscreen",true);
+    YT2.addClass("yt2");
+    
+    console.log(YT);
+    $("#youtube").append(YT);
+    $("#youtube").append(YT2);
+};
+

@@ -65,18 +65,18 @@ $(document).ready(function() {
         p4.addClass("job-url");
         p4.attr("href", jobLink);
         p4.attr("target", "_blank");
-        var p5 = $("<button>");
-        p5.text("Click here to favorite");
-        p5.addClass("favorite-button");
-        // Adding data-index and data-saved attirubtes to hold information we'll need to access later
-        p5.attr("data-index", i);
-        p5.attr("data-saved", false);
+        // var p5 = $("<button>");
+        // p5.text("Click here to favorite");
+        // p5.addClass("favorite-button");
+        // // Adding data-index and data-saved attirubtes to hold information we'll need to access later
+        // p5.attr("data-index", i);
+        // p5.attr("data-saved", false);
         // Appending all elements to the jobDiv
         jobDiv.append(p1);
         jobDiv.append(p2);
         jobDiv.append(p3);
         jobDiv.append(p4);
-        jobDiv.append(p5);
+        // jobDiv.append(p5);
         // Displaying the job results
         $("#job-results").append(jobDiv);
     })

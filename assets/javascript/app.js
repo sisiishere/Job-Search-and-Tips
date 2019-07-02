@@ -4,6 +4,7 @@ $(document).ready(function () {
 });
 
 //declaring varaibles that will store video ID's from the recieved response.
+/*
 var videoID;
 var videoID_2;
 
@@ -40,12 +41,12 @@ $(function(){
 
             console.log(sessionStorage);
             console.log(typeof(sessionStorage));
-                embed();
-                location.href = "index2.html";
+            location.href = "index2.html"; 
         });
     });
+    embed();
 });
-
+*/
 function init(){
     gapi.client.setApiKey("AIzaSyCa6Ax79dsyv4aSME_i7u3VKv7ApWTbAe4");
     gapi.client.load("youtube", "v3", function(){
@@ -63,7 +64,9 @@ function embed(){
     console.log(videoID);
     console.log(videoID_2);
     $("#youtube").empty();
+    
     var YT = $("<iframe>");
+    
     /*var YT = $('<iframe>',{
         width: 200,
         height: 200,
@@ -74,12 +77,14 @@ function embed(){
     }).appendTo($("#youtube"));
     location.href ="index2.html";
     */
+
     YT.attr("width","200");
     YT.attr("height","200");
     YT.attr("frameborder","1");
     YT.attr("src", "https://www.youtube.com/embed/"+videoID);
     YT.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
     YT.attr("allowfullscreen");
+   
     var YT2 = $("<iframe>");
     YT2.attr("width","200");
     YT2.attr("height","200");
@@ -88,7 +93,6 @@ function embed(){
     YT2.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
     YT2.attr("allowfullscreen",true);
     
-    console.log(YT);
     $("#youtube").append(YT);
     $("#youtube").append(YT2);
 }

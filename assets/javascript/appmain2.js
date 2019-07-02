@@ -89,5 +89,46 @@ $("#submit").on("click", function(event) {
             location.href = "index2.html";
         }
     });
+});
 
+var videoID;
+var videoID_2;
+
+// call to get the youtube video objects
+$(function(){
+    $("#submit").on('click', function(e) {
+        e.preventDefault();
+        //preparing the kind of information that is to be requested
+
+        var request = gapi.client.youtube.search.list({
+            part: "snippet",
+            type: "video",
+
+            //search parameter that takes in the users input about a job and gives back videos related to tips on to become a softare engieer.
+
+            q: encodeURIComponent("tips to become a "+$("#keyword").val()).replace(/%20/g, "+"),
+            maxResults: 2,
+            order: "viewCount",
+        });
+        request.execute(function(response){
+            // log the response 
+            console.log(response);
+            
+            //gets the the video ids from the response request that refer to the two most viewed videos.
+
+            videoID = response.items[0].id.videoId;
+            videoID_2 = response.items[1].id.videoId;
+            console.log(videoID);
+            console.log(videoID_2);
+
+            //storing variables in the session so they can be referenced later.
+            sessionStorage.setItem("VideoID",videoID);
+            sessionStorage.setItem("VideoID_2",videoID_2);
+
+            console.log(sessionStorage);
+            console.log(typeof(sessionStorage));
+            location.href = "index2.html"; 
+        });
+    });
+    embed();
 });

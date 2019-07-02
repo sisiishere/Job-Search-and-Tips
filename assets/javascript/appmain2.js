@@ -84,7 +84,7 @@ $("#submit").on("click", function(event) {
             sessionStorage.setItem("title", title);
             sessionStorage.setItem("snippet", snippet);
             sessionStorage.setItem("link", link);
-            console.log(sessionStorage.setItem("title", title));
+            //console.log(sessionStorage.setItem("title", title));
 
             location.href = "index2.html";
         }

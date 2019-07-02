@@ -64,7 +64,7 @@ $("#submit").on("click", function(event) {
                 sessionStorage.setItem("snippet", snippet);
                 sessionStorage.setItem("link", link);
 
-                location.href = "index2.html";
+                //location.href = "index2.html";
             })
         }
 
@@ -86,7 +86,7 @@ $("#submit").on("click", function(event) {
             sessionStorage.setItem("link", link);
             //console.log(sessionStorage.setItem("title", title));
 
-            location.href = "index2.html";
+            //  location.href = "index2.html";
         }
     });
 });
@@ -130,5 +130,5 @@ $(function(){
             location.href = "index2.html"; 
         });
     });
-    embed();
+    //embed();
 });

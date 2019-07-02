@@ -1,4 +1,3 @@
-
 // var firebaseConfig = {
 //     apiKey: "AIzaSyBrVihpxCSnZEAR8gWi2T7kgMJXjEPTy8M",
 //     authDomain: "caskjobdb.firebaseapp.com",
@@ -11,6 +10,9 @@
 // firebase.initializeApp(firebaseConfig);
 // var database = firebase.database();
 
+
+var videoID;
+var videoID_2;
 
 // When the user hits submit
 $("#submit").on("click", function(event) {
@@ -32,6 +34,7 @@ $("#submit").on("click", function(event) {
         $(".modal").modal("open");
         return false;
     }
+
 
     // Perfoming an AJAX GET request to our queryURL
     $.ajax({
@@ -64,7 +67,7 @@ $("#submit").on("click", function(event) {
                 sessionStorage.setItem("snippet", snippet);
                 sessionStorage.setItem("link", link);
 
-                //location.href = "index2.html";
+                // location.href = "index2.html";
             })
         }
 
@@ -84,51 +87,119 @@ $("#submit").on("click", function(event) {
             sessionStorage.setItem("title", title);
             sessionStorage.setItem("snippet", snippet);
             sessionStorage.setItem("link", link);
-            //console.log(sessionStorage.setItem("title", title));
+            console.log(sessionStorage.setItem("title", title));
 
-            //  location.href = "index2.html";
+            // location.href = "index2.html";
         }
     });
-});
 
-var videoID;
-var videoID_2;
+    // // Variables for job search API
+    // var queryURLJ = "https://jobs.search.gov/jobs/search.json?query=" + keyword;
 
-// call to get the youtube video objects
-$(function(){
-    $("#submit").on('click', function(e) {
-        e.preventDefault();
-        //preparing the kind of information that is to be requested
+    //  // Perfoming an AJAX GET request to our queryURL
+    // $.ajax({
+    //     url: queryURLJ,
+    //     method: "GET"
+    // })
+    
+    // // After the data from the AJAX request comes back
+    // .then(function(response) {
+    //     console.log(response); 
+    //     // Creating an array to push the object to (created below)
+    //     var jobArray = [];
 
-        var request = gapi.client.youtube.search.list({
-            part: "snippet",
-            type: "video",
+    //     // For each i, creating a new object to hold the information we want about each job
+    //     response.forEach(i => {
+    //         let newObj = {};
+    //         newObj.jobTitle = i.position_title;
+    //         newObj.jobOrg = i.organization_name;
+    //         newObj.jobLocation = i.locations[0];
+    //         newObj.jobLink = i.url;
+    //         // Pushing the new object to the jobArray
+    //         jobArray.push(newObj)
+    //     })
 
-            //search parameter that takes in the users input about a job and gives back videos related to tips on to become a softare engieer.
+    //     console.log(jobArray)
+    //     // Storing the object in session storage
+    //     sessionStorage.setItem("jobs", JSON.stringify(jobArray));
 
-            q: encodeURIComponent("tips to become a "+$("#keyword").val()).replace(/%20/g, "+"),
-            maxResults: 2,
-            order: "viewCount",
-        });
-        request.execute(function(response){
-            // log the response 
-            console.log(response);
-            
-            //gets the the video ids from the response request that refer to the two most viewed videos.
 
-            videoID = response.items[0].id.videoId;
-            videoID_2 = response.items[1].id.videoId;
-            console.log(videoID);
-            console.log(videoID_2);
+    // });
 
-            //storing variables in the session so they can be referenced later.
-            sessionStorage.setItem("VideoID",videoID);
-            sessionStorage.setItem("VideoID_2",videoID_2);
 
-            console.log(sessionStorage);
-            console.log(typeof(sessionStorage));
-            location.href = "index2.html"; 
-        });
-    });
-    //embed();
+    var host = "data.usajobs.gov";
+    var userAgent = "kevin.spies@gmail.com";
+    var authKey = "EmwCZ7moRDelyy+wVWLkYGAmao1OjvebTpbQEQd5BxY=";
+
+    var queryURLJ2 = "https://data.usajobs.gov/api/search?Keyword=" + keyword;
+
+   $.ajax({
+     url: queryURLJ2,
+     method: "GET",
+     headers: {
+       "Host": host,
+       "User-Agent": userAgent,
+       "Authorization-Key": authKey
+     }
+   })
+   
+   .then(function(response) {
+        console.log(response); 
+
+        var results = response.SearchResult.SearchResultItems;
+        console.log(results);
+
+        var jobArray = [];
+
+        results.forEach(i => {
+            let newObj = {};
+            newObj.jobTitle = i.MatchedObjectDescriptor.PositionTitle;
+            newObj.jobOrg = i.MatchedObjectDescriptor.OrganizationName;
+            newObj.jobLocation = i.MatchedObjectDescriptor.PositionLocationDisplay
+            newObj.jobLink = i.MatchedObjectDescriptor.PositionURI;
+            // Pushing the new object to the jobArray
+            jobArray.push(newObj)
+    })
+
+    console.log(jobArray)
+    // Storing the object in session storage
+    sessionStorage.setItem("jobs", JSON.stringify(jobArray));
+
+    location.href = "index2.html";
+
+   });
+
+
+   //preparing the kind of information that is to be requested
+
+   var request = gapi.client.youtube.search.list({
+       part: "snippet",
+       type: "video",
+
+       //search parameter that takes in the users input about a job and gives back videos related to tips on to become a softare engieer.
+
+       q: encodeURIComponent("tips to become a "+$("#keyword").val()).replace(/%20/g, "+"),
+       maxResults: 2,
+       order: "viewCount",
+   });
+   request.execute(function(response){
+       // log the response 
+       console.log(response);
+       
+       //gets the the video ids from the response request that refer to the two most viewed videos.
+
+       videoID = response.items[0].id.videoId;
+       videoID_2 = response.items[1].id.videoId;
+       console.log(videoID);
+       console.log(videoID_2);
+
+       //storing variables in the session so they can be referenced later.
+       sessionStorage.setItem("VideoID",videoID);
+       sessionStorage.setItem("VideoID_2",videoID_2);
+
+       console.log(sessionStorage);
+       console.log(typeof(sessionStorage));
+       //location.href = "index2.html"; 
+   });
+
 });

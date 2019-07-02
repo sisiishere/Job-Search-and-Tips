@@ -4,8 +4,8 @@ $(document).ready(function () {
 });
 
 //declaring varaibles that will store video ID's from the recieved response.
-/*
-var videoID;
+
+/*var videoID;
 var videoID_2;
 
 // call to get the youtube video objects
@@ -44,7 +44,7 @@ $(function(){
             location.href = "index2.html"; 
         });
     });
-    embed();
+    //embed();
 });
 */
 function init(){

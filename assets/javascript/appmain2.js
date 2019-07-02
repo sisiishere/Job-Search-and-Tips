@@ -171,9 +171,9 @@ $("#submit").on("click", function(event) {
     youtube = true;
     });
 
-
+    // Timeout function so we wait a few seconds before running the conditional
     setTimeout (test, 2000)
-
+    // Conditional statement to test whether or not all of the API calls have been made successfully before redirecting to the results page
     function test() {
         if (wiki == true && job == true && youtube == true) {
             location.href = "index2.html";

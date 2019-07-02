@@ -84,44 +84,44 @@ $(document).ready(function() {
 
     // *** FAVORITES
     // When the button is clicked, we retrieve the index from the data-index attritube and verify that the item has not already been saved
-    $(document).on("click", ".favorite-button", function() {
-        $(this).addClass("red fav-btn");
-        var newElement = $(this).attr("data-index");
-        // console.log(newElement);
-        console.log(this);
+    // $(document).on("click", ".favorite-button", function() {
+    //     $(this).addClass("red fav-btn");
+    //     var newElement = $(this).attr("data-index");
+    //     // console.log(newElement);
+    //     console.log(this);
         
-        if ($(this).attr("data-saved") === "true") {
-            return false
-        }
-        // If the button has not already been saved, we save it, push it to the "saved" array, set local storage, and update the data-saved attribute
-        // We use both indexOf and data-saved in case it was saved previously
-        else if (saved.indexOf(newElement) === -1) {
-            saved.push(newElement);
-            $(this).attr("data-saved", true);
-            localStorage.setItem("saved", JSON.stringify(saved));
-            console.log(localStorage);
-        }
-    })
+    //     if ($(this).attr("data-saved") === "true") {
+    //         return false
+    //     }
+    //     // If the button has not already been saved, we save it, push it to the "saved" array, set local storage, and update the data-saved attribute
+    //     // We use both indexOf and data-saved in case it was saved previously
+    //     else if (saved.indexOf(newElement) === -1) {
+    //         saved.push(newElement);
+    //         $(this).attr("data-saved", true);
+    //         localStorage.setItem("saved", JSON.stringify(saved));
+    //         console.log(localStorage);
+    //     }
+    // })
 
-    // For each saved item, create a remove button and append to the favorites section
-    for (var i = 0; i < saved.length; i++) {
-        console.log(saved[i]);
-        var divFav = $("<div>");
-        var pFav = $("<p>");
-        pFav.text(saved[i]);
-        console.log(pFav);
-        $("#job-favorites").append(divFav)
+    // // For each saved item, create a remove button and append to the favorites section
+    // for (var i = 0; i < saved.length; i++) {
+    //     console.log(saved[i]);
+    //     var divFav = $("<div>");
+    //     var pFav = $("<p>");
+    //     pFav.text(saved[i]);
+    //     console.log(pFav);
+    //     $("#job-favorites").append(divFav)
         
-    }
+    // }
     
-    $(document).on("click", ".fav-btn", function () {
-        var index = $(this).data("index");
+    // $(document).on("click", ".fav-btn", function () {
+    //     var index = $(this).data("index");
 
-        saved.splice(index, 1);
+    //     saved.splice(index, 1);
 
-        $(this).parent(".job-container").remove();
-        localStorage.setItem("saved", JSON.stringify(saved));
-    })
+    //     $(this).parent(".job-container").remove();
+    //     localStorage.setItem("saved", JSON.stringify(saved));
+    // })
 
     // *** YouTube API
     embed();

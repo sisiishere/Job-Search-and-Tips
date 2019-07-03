@@ -5,7 +5,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background-image: url("images/red-gradient.jpg");
+    background-image: url("email-pattern/email-pattern.png");
     background-size: cover;
 }
 
@@ -17,6 +17,10 @@ body {
 .job-container {
     max-height: 500px;
     overflow: scroll;
+}
+
+.card{
+    border: 2px ridge black;
 }
 
 /* Styling the individual cards that the job results display on */

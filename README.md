@@ -1,4 +1,10 @@
 # Job-Search-and-TipsGetting Started
+This first project is about searching for a particular job along with the information and the video on the certain job provided.
+First off, a person types in the job one desires.
+Secondly, one should get some job listings on that certain job.
+Then, there's information provided about the certain job via Wikipedia API.
+And also, there is a video on the certain job from the Youtube API.
+And that's basically how the Job Search App works.
 
 Prerequisites
 HTML
